@@ -1,2 +1,2 @@
-#Nome das duplas
+#Nomes da dupla
 
