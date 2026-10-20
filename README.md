@@ -67,3 +67,22 @@
   * `PUT /api/monitorias/{id}` — Edita informações da monitoria.
   * `DELETE /api/monitorias/{id}` — Cancela/exclui a vaga de monitoria.
   * `POST /api/monitorias/{id}/inscrever` — Incrementa vaga ocupada e encerra a vaga se lotar.
+
+* **Pseudocódigo da Regra de Negócio (Inscrição em Monitoria):**
+```text
+Função inscreverAluno(monitoriaId):
+    monitoria = repository.buscarPorId(monitoriaId)
+    
+    Se Não monitoria.aberta Ou monitoria.vagasOcupadas >= monitoria.vagasTotais Então
+        LançarErro("Inscrições encerradas para esta monitoria.")
+    FimSe
+    
+    monitoria.vagasOcupadas = monitoria.vagasOcupadas + 1
+    
+    Se monitoria.vagasOcupadas == monitoria.vagasTotais Então
+        monitoria.aberta = Falso
+    FimSe
+    
+    Retornar repository.salvar(monitoria)
+FimFuncao
+```
