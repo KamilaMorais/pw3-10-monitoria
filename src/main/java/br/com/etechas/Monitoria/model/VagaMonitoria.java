@@ -13,20 +13,21 @@ import lombok.Setter;
 public class VagaMonitoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "disciplina", nullable = false)
     private String disciplina;
 
-    @Column(name = "nome_monitor", nullable = false)
+    @Column(name = "nomeMonitor", nullable = false)
     private String nomeMonitor;
 
-    @Column(name = "vagas_totais", nullable = false)
+    @Column(name = "vagasTotais", nullable = false)
     private Integer vagasTotais;
 
-    @Column(name = "vagas_ocupadas", nullable = false)
+    @Column(name = "vagasOcupadas", nullable = false)
     private Integer vagasOcupadas = 0;
 
-    @Column(nullable = false)
+    @Column(name = "aberta", nullable = false)
     private Boolean aberta = true;
 }
