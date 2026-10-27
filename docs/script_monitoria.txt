@@ -1,0 +1,12 @@
+Create database DadosMonitoria
+Use DadosMonitoria 
+
+Create table VagaMonitiria 
+(
+id bigint primary key,
+disciplina varchar(50) 
+nomeMonitor varchar (100)
+vagasTotais int(400)
+vagasOcupadas int(400)
+aberta boolean
+);
