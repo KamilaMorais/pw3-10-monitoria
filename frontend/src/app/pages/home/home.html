@@ -1,4 +1,65 @@
-<section>
+<main>
   <h1>Monitoria entre colegas</h1>
-  <p>Um espaço para compartilhar conhecimentos e aprender juntos.</p>
-</section>
+
+  <button
+    type="button"
+    (click)="carregar()"
+    [disabled]="carregando()"
+  >
+    Atualizar lista
+  </button>
+
+  @if (carregando()) {
+  <p>Carregando...</p>
+  } @else if (erro()) {
+  <p role="alert">{{ erro() }}</p>
+  } @else {
+  <div class="tabela">
+    <table>
+      <thead>
+      <tr>
+        <th>Disciplina</th>
+        <th>Monitor</th>
+        <th>Ocupadas / Total</th>
+        <th>Situação</th>
+        <th>Ações</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      @for (monitoria of monitorias(); track monitoria.id) {
+      <tr>
+        <td>{{ monitoria.disciplina }}</td>
+        <td>{{ monitoria.nomeMonitor }}</td>
+        <td>
+          {{ monitoria.vagasOcupadas }} / {{ monitoria.vagasTotais }}
+        </td>
+        <td>{{ monitoria.aberta ? 'Aberta' : 'Encerrada' }}</td>
+        <td>
+          <button
+            type="button"
+            (click)="inscrever(monitoria.id)"
+            [disabled]="!monitoria.aberta"
+          >
+            Inscrever-se
+          </button>
+
+          <button
+            type="button"
+            class="excluir"
+            (click)="excluir(monitoria.id)"
+          >
+            Excluir
+          </button>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="5">Nenhuma monitoria cadastrada.</td>
+      </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+  }
+</main>
