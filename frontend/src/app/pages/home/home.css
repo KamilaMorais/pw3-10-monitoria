@@ -1,0 +1,14 @@
+section {
+  max-width: 960px;
+  margin: 48px auto;
+  padding: 24px;
+}
+
+h1 {
+  color: #243b53;
+}
+
+p {
+  color: #52606d;
+  line-height: 1.6;
+}
